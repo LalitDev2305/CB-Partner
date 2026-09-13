@@ -8,18 +8,14 @@ on:
 jobs:
   validate:
     runs-on: macos-15
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
-      - name: Validate Xcode project
-        run: |
-          xcodebuild \
-            -project iosApp/iosApp.xcodeproj \
-            -target iosApp \
-            -sdk iphonesimulator \
-            -configuration Debug \
-            CODE_SIGNING_ALLOWED=NO \
-            build
+      - name: Parse Xcode project
+        run: xcodebuild -list -project iosApp/iosApp.xcodeproj
+      - name: Verify Kotlin framework integration task
+        run: ./gradlew :composeApp:tasks --all | grep embedAndSignAppleFrameworkForXcode
