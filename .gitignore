@@ -6,3 +6,6 @@ local.properties
 .DS_Store
 *.iml
 .kotlin/
+**/xcuserdata/
+*.xcuserstate
+iosApp/DerivedData/
