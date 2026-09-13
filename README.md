@@ -2,11 +2,16 @@
 
 Minimal **Compose Multiplatform + MVI + UDF** starter. No product features or business logic are included.
 
-## Targets
+## Applications and shared module
 
-- Android application
-- iOS framework target
-- Desktop JVM application
+- `androidApp` — Android host application
+- `iosApp` — native iOS/Xcode host application
+- `desktopApp` — Desktop JVM host application
+- `composeApp` — shared Compose Multiplatform UI and MVI/UDF foundation
+
+The platform relationship is:
+
+`androidApp / iosApp / desktopApp -> composeApp`
 
 ## Architecture foundation
 
@@ -25,11 +30,17 @@ The intended flow is:
 
 One-time events flow through `UiEffect`.
 
-## Modules
+## iOS integration
 
-- `composeApp` — shared Compose UI and MVI/UDF foundation
-- `androidApp` — Android entry point
-- `desktopApp` — Desktop entry point
+`composeApp` exposes the static `ComposeApp` framework and `MainViewController()` from `iosMain`.
+
+The native `iosApp` SwiftUI host embeds that controller through `UIViewControllerRepresentable`. Its Xcode build phase runs:
+
+```bash
+./gradlew :composeApp:embedAndSignAppleFrameworkForXcode
+```
+
+Open `iosApp/iosApp.xcodeproj` in Xcode to run the iOS app. For a physical device, select your Apple Development Team in Signing & Capabilities (or set `TEAM_ID` in `iosApp/Configuration/Config.xcconfig`).
 
 ## Versions
 
@@ -49,4 +60,4 @@ Desktop:
 ./gradlew :desktopApp:run
 ```
 
-For iOS, the shared module already exposes `MainViewController()` through the `ComposeApp` framework; an Xcode host can be added when iOS application work begins.
+iOS: open `iosApp/iosApp.xcodeproj` in Xcode and run the `iosApp` target on a simulator or device.
