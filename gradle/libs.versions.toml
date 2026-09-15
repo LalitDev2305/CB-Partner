@@ -11,6 +11,10 @@ androidTargetSdk = "37"
 [libraries]
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+composeGradlePlugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose" }
+composeCompilerGradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
