@@ -11,10 +11,16 @@ cd CB-Partner
 
 Start an Android emulator or connect an Android device first.
 
-### Windows
+Check that Android Debug Bridge can see the device:
 
 ```bash
-gradlew.bat :androidApp:installDebug
+adb devices
+```
+
+### Windows PowerShell
+
+```powershell
+.\gradlew.bat :androidApp:installDebug
 adb shell am start -n com.carbroz.partner/com.carbroz.partner.android.MainActivity
 ```
 
@@ -25,14 +31,14 @@ adb shell am start -n com.carbroz.partner/com.carbroz.partner.android.MainActivi
 adb shell am start -n com.carbroz.partner/com.carbroz.partner.android.MainActivity
 ```
 
-You can also open the project in Android Studio, select the `androidApp` run configuration, choose an emulator or connected device, and click **Run**.
+You can also open the project in Android Studio, start an emulator, select the `androidApp` run configuration, and click **Run**.
 
 ## Run Desktop app
 
-### Windows
+### Windows PowerShell
 
-```bash
-gradlew.bat :desktopApp:run
+```powershell
+.\gradlew.bat :desktopApp:run
 ```
 
 ### macOS / Linux
