@@ -9,11 +9,23 @@ cd CB-Partner
 
 ## Run Android app
 
-1. Open the project root folder in Android Studio.
-2. Wait for Gradle sync to complete.
-3. Select the `androidApp` run configuration.
-4. Select an Android emulator or connected device.
-5. Click **Run**.
+Start an Android emulator or connect an Android device first.
+
+### Windows
+
+```bash
+gradlew.bat :androidApp:installDebug
+adb shell am start -n com.carbroz.partner/com.carbroz.partner.android.MainActivity
+```
+
+### macOS / Linux
+
+```bash
+./gradlew :androidApp:installDebug
+adb shell am start -n com.carbroz.partner/com.carbroz.partner.android.MainActivity
+```
+
+You can also open the project in Android Studio, select the `androidApp` run configuration, choose an emulator or connected device, and click **Run**.
 
 ## Run Desktop app
 
