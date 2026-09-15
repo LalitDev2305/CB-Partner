@@ -1,37 +1,21 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidMultiplatformLibrary)
-    alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.composeCompiler)
+    id("carbroz.kmp.compose")
 }
 
 kotlin {
     android {
         namespace = "com.carbroz.partner.shared"
-        compileSdk = libs.versions.androidCompileSdk.get().toInt()
-        minSdk = libs.versions.androidMinSdk.get().toInt()
         androidResources.enable = true
-
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
     }
 
-    jvm("desktop") {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
-
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "ComposeApp"
-            isStatic = true
+    listOf("iosArm64", "iosSimulatorArm64").forEach { targetName ->
+        targets.named<KotlinNativeTarget>(targetName) {
+            binaries.framework {
+                baseName = "ComposeApp"
+                isStatic = true
+            }
         }
     }
 
