@@ -18,3 +18,5 @@ rootProject.name = "CarBrozPartnerApp"
 include(":composeApp")
 include(":androidApp")
 include(":desktopApp")
+include(":core:mvi")
+include(":feature:splash")
